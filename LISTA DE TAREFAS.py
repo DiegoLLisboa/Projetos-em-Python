@@ -7,15 +7,12 @@ class ToDoListApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Lista de Tarefas")
-        
-        # Nome do arquivo onde as tarefas serão salvas
+
         self.tasks_file = "tasks.pkl"
 
-        # Frame principal
         main_frame = tk.Frame(root)
         main_frame.pack(pady=10, padx=10)
 
-        # Frame da entrada de tarefas
         entry_frame = tk.Frame(main_frame)
         entry_frame.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -24,16 +21,14 @@ class ToDoListApp:
 
         self.task_entry = tk.Entry(entry_frame, width=50)
         self.task_entry.pack(side=tk.LEFT, padx=5)
-        self.task_entry.bind("<Return>", self.add_task)  # Binding the Enter key to add_task
+        self.task_entry.bind("<Return>", self.add_task)
 
         self.add_button = tk.Button(entry_frame, text="Adicionar Tarefa", command=self.add_task)
         self.add_button.pack(side=tk.LEFT)
 
-        # Frame para as tarefas
         self.tasks_frame = tk.Frame(main_frame)
         self.tasks_frame.grid(row=1, column=0, pady=5)
 
-        # Frame para os botões de ações
         actions_frame = tk.Frame(main_frame)
         actions_frame.grid(row=1, column=1, padx=10, pady=5, sticky='n')
 
@@ -45,10 +40,8 @@ class ToDoListApp:
 
         self.tasks = []
 
-        # Carrega as tarefas do arquivo
         self.load_tasks()
 
-        # Configura para salvar as tarefas ao fechar o programa
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def add_task(self, event=None):
